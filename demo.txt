@@ -2,3 +2,5 @@ hii
 hello
 welcome
 bye
+
+hello mam / sir
