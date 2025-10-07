@@ -1,0 +1,114 @@
+signup: 
+--- vendor ( need approval from admin ) 
+--- user ( dont need approval )
+
+login:  { ps: admin login 1 credential will be default }
+--- vendor ( if approved by admin )
+--- user
+
+forget password: ( before login ) ( for all module )
+---  sent for reseting password to specific user only
+
+
+change password: ( after successful login ) ( for all module )
+
+
+== use conditional rendering for navigating to dashboard / home page
+
+******************************************************
+
+ADMIN
+
+dashboard : 
+
+header :
+dropdown ( logout, changepassword, updateprofile )
+
+sidebar:
+--- users list
+	**vendors  list
+	both with unapproved, approved, active, deactive ( i.e. soft delete), delete rights
+	**users list
+	active, deactive rights ( i.e. soft delete)
+
+--- products list
+	** vendors products
+	read, update and unavailable ( i.e. soft delete ) also rights to admin 
+
+-- add product
+	categories, sub categories
+	with CRUD ( soft and hard delete )
+
+--- audit logs ( store timestamps for audit purposes )
+	details of vendors CRUD on products ( how many products, no. of product per category or subcategory)
+	details of users checkouting products ( how many products, who buy product, no. of order per user )
+
+( pending from my side )
+==== global setting :
+	pagination - per page products ( reflect on all modules )
+	2FA - OTP
+
+******************************************************
+
+VENDOR
+
+dashboard:
+
+header :
+dropdown ( logout, changepassword, updateprofile )
+
+account 
+--- active and deactive their acccout 
+--- make request to admin if account is deactive by admin
+--- make request to admin for deletion of account 
+
+sidebar: 
+products
+--- add product 
+	categories, sub categories
+	with CRUD ( soft and hard delete ) 
+
+--- products list ( their product only )
+	read, update, delete ( soft and hard )
+
+orders
+--- orders list
+	id, userid, user name, product name, price , total ( data comes from user )
+	can change status ( dispatched, shipped, OFD, placed with timestamp )  ( reflect to user side ) ( notify the user )
+
+( pending from my side )
+==== blog 
+
+
+******************************************************
+
+USER
+
+header:
+dropdpwn::  logout, changepassword, resetpassword, update profile
+
+
+products
+--- view products ( only if vendor is active )
+--- search products
+--- filter by categories and sub categories
+
+checkout
+--- cart the products
+--- buy the product ( can save the address ) 
+	if same vendor products one orderid
+	or if different vendors products different orderid
+--- save history of buyes products
+
+
+******************************************************
+
+graphs 
+mailing system 
+error log in backend to track
+
+apply filters
+uuid ( transaction and order )
+
+tech stack : node, express, sequelize, mysql, react, formik, yup, bootstrap 
+
